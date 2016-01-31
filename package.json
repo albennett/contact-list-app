@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/albennett/contact-list-app/issues"
   },
-  "homepage": "https://github.com/albennett/contact-list-app#readme"
+  "homepage": "https://github.com/albennett/contact-list-app#readme",
+  "dependencies": {
+    "angular": "^1.4.9",
+    "bootstrap": "^3.3.6"
+  }
 }
