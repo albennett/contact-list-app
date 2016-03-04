@@ -10,39 +10,52 @@
   <title>Contact List App</title>
 </head>
 <body>
-  <div class='container' ng-controller='AppCtrl'>
-    <h1>Contact List App </h1>
-    <input ng-model="showit">
-  {{showit}}
-    <table class='table'>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Email</th>
-          <th>Number</th>
-          <th>Action</th>
-          <th>&nbsp;</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><input class='form-control' ng-model='contact.name'></td>
-          <td><input class='form-control' ng-model='contact.email'></td>
-          <td><input class='form-control' ng-model='contact.number'></td>
-          <td><button class='btn btn-primary' ng-click='addContact()'>Add Contact </button></td>
-          <td><button class='btn btn-info' ng-click='update()'>Update</button>&nbsp;&nbsp;<button class='btn btn-info' ng-click='deselect()'>Clear</button></td>
-        </tr>
-        <tr ng-repeat='contact in contactlist'></tr>
-          <td>{{contact.name}}</td>
-          <td>{{contact.email}}</td>
-          <td>{{contact.number}}</td>
-          <td><button class='btn btn-danger' ng-click='remove(contact._id)'>Remove</button></td>
-          <td><button class='btn btn-warning' ng-click='edit(contact._id)'>Edit</button></td>
-      </tbody>
+    <!-- main layout -->
+<div class="container" ng-controller="AppCtrl as main">
 
-    </table>
+  <h1>My Contact List App</h1>
+
+<!-- Main input layout-->
+  <div class="row">
+      <div class="col-md-3">
+        <input class="form-control" placeholder="Name" ng-model="main.contact.name"/>
+      </div>
+      <div class="col-md-3">
+        <input class="form-control" placeholder="Email"  ng-model="main.contact.email"/>
+      </div>
+      <div class="col-md-3">
+        <input class="form-control"  placeholder="Number" ng-model="main.contact.phone"/>
+      </div>
+      <div class="col-md-3">
+        <button class="btn btn-primary" ng-hide="main.editModeActive" ng-click="main.addNewContact()">Add Contact</button>
+        <button class="btn btn-primary" ng-show="main.editModeActive" ng-click="main.updateContact(main.contact)">Update</button>
+      </div>
   </div>
+
+  <div class="row">
+    <div ng-repeat="person in main.contactList">
+      <div class="col-md-3">
+        <p>{{person.name}}</p>
+      </div>
+      <div class="col-md-3">
+        <p>{{person.email}}</p>
+      </div>
+      <div class="col-md-3">
+        <p>{{person.phone}}</p>
+      </div>
+      <div class="col-md-3">
+        <button class="btn btn-success" ng-click="main.editContact(person)">Edit</button>
+        <button class="btn btn-danger" ng-click="main.removeContact(person._id)">Delete</button>
+      </div>
+
+    </div>
+  </div>
+
+ </div>
   <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-rc.2/angular.min.js'></script>
+  <!-- // <script src='../node_modules/angular/angular.min.js'></script> -->
+  <script src='../server.js'></script>
+  <script src="js/mainCtrl.js"></script>
 
 </body>
 </html>
